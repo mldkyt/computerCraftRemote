@@ -41,6 +41,12 @@ if (isset($_GET['up'])) {
     file_put_contents("action.json", json_encode($data));
     header("Location: /");
 }
+if (isset($_GET['select'])) {
+    $data = json_decode(file_get_contents("action.json"));
+    $data->action = "select" . $_GET['select'];
+    file_put_contents("action.json", json_encode($data));
+    header("Location: /");
+}
 if (isset($_GET['refreshinv'])) {
     $data = json_decode(file_get_contents("action.json"));
     $data->action = "refreshinv";
@@ -97,16 +103,24 @@ $data2 = json_decode(file_get_contents("data.json"));
         <th>Slot</th>
         <th>Name</th>
         <th>Count</th>
+        <th>Select</th>
     </tr>
     </thead>
     <tbody>
     <?php
     if (isset($data2->inventory)) {
         foreach ($data2->inventory as $slot => $item) {
+            if (!isset($item->name)) {
+                continue;
+            }
+            if ($item->name == "air") {
+                continue;
+            }
             echo "<tr>";
             echo "<td>" . $slot . "</td>";
             echo "<td>" . $item->name . "</td>";
             echo "<td>" . $item->count . "</td>";
+            echo "<td><a href=\"?select=" . $slot . "\">Select</a></td>";
             echo "</tr>";
         }
     }

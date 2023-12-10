@@ -43,78 +43,17 @@ if (isset($_GET['posnotfound'])) {
 if (isset($_GET["invslot"]) and isset($_GET["invname"]) and isset($_GET["invcount"])) {
     $data = json_decode(file_get_contents("data.json"));
     if (!isset($data->inventory)) {
-        $data->inventory = array(
-            "1" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "2" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "3" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "4" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "5" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "6" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "7" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "8" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "9" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "10" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "11" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "12" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "13" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "14" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "15" => array(
-                "name" => "",
-                "count" => ""
-            ),
-            "16" => array(
-                "name" => "",
-                "count" => ""
-            ),
-
-        );
+        $data->inventory = array();
+    }
+    $data->inventory = (array)$data->inventory;
+    if (!isset($data->inventory[$_GET["invslot"]])) {
+        $data->inventory[$_GET["invslot"]] = array();
     }
     $data->inventory[$_GET["invslot"]] = array(
         "name" => $_GET["invname"],
         "count" => $_GET["invcount"]
     );
+
     file_put_contents("data.json", json_encode($data));
 }
 

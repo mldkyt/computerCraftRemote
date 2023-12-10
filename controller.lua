@@ -6,7 +6,7 @@
 ---
 
 term.clear()
-http.get("http://localhost:8000/comm.php?clientver=1.12")
+http.get("http://localhost:8000/comm.php?clientver=1.2")
 data = http.get("http://localhost:8000/comm.php?version=1").readAll()
 print(data)
 
@@ -80,6 +80,39 @@ while true do
         sendLocationData()
     elseif data == "refreshinv" then
         sendInventoryData()
+    elseif data == "select1" then
+        turtle.select(1)
+    elseif data == "select2" then
+        turtle.select(2)
+    elseif data == "select3" then
+        turtle.select(3)
+    elseif data == "select4" then
+        turtle.select(4)
+    elseif data == "select5" then
+        turtle.select(5)
+    elseif data == "select6" then
+        turtle.select(6)
+    elseif data == "select7" then
+        turtle.select(7)
+    elseif data == "select8" then
+        turtle.select(8)
+    elseif data == "select9" then
+        turtle.select(9)
+    elseif data == "select10" then
+        turtle.select(10)
+    elseif data == "select11" then
+        turtle.select(11)
+    elseif data == "select12" then
+        turtle.select(12)
+    elseif data == "select13" then
+        turtle.select(13)
+    elseif data == "select14" then
+        turtle.select(14)
+    elseif data == "select15" then
+        turtle.select(15)
+    elseif data == "select16" then
+        turtle.select(16)
+
     elseif data == "update" then
         break
     end
